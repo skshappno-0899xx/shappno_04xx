@@ -1,0 +1,267 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>SHAPPNO LV UP - Free Fire Automation</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#000;color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased}
+:root{--bg:#000;--card:#08080c;--card2:#101015;--line:#1a1a22;--line2:#25252e;--txt:#fff;--mut:#8a8a95;--dim:#55555f;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--lightblue:#38bdf8;--purple:#8b5cf6;--gold:#f59e0b}
+.mono{font-family:'JetBrains Mono',monospace}
+.orb{font-family:'Orbitron',sans-serif}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#262626;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#3a3a3a}
+html{scroll-behavior:smooth}
+html,body{height:100%}
+body{background:#050505;min-height:100vh;position:relative;overflow-x:hidden}
+body::before{content:'';position:fixed;inset:0;background:
+  linear-gradient(rgba(255,255,255,0.015) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(255,255,255,0.015) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;z-index:0;
+  mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%);
+  -webkit-mask-image:radial-gradient(ellipse at 50% 40%,#000 20%,transparent 75%)}
+.ann{position:relative;z-index:5;background:#38bdf8;color:#000;padding:9px 40px 9px 14px;text-align:center;font-size:12px;font-weight:600;font-family:'Inter',sans-serif}
+.ann a{color:#000;text-decoration:underline;font-weight:800}
+.ann .cls{position:absolute;right:12px;top:50%;transform:translateY(-50%);background:transparent;border:none;cursor:pointer;color:#000;font-size:16px;line-height:1;padding:4px}
+.hdr{position:relative;z-index:5;display:flex;align-items:center;justify-content:space-between;padding:14px 18px;border-bottom:1px solid #151515}
+.hlogo{display:flex;align-items:center;gap:10px}
+.hshield{width:34px;height:34px;display:inline-flex;align-items:center;justify-content:center}
+.hshield svg{width:34px;height:34px;stroke:#fff;fill:none;stroke-width:1.8}
+.hname{font-family:'Inter',sans-serif;font-size:14px;font-weight:800;letter-spacing:2.5px;color:#fff}
+.hbell{background:transparent;border:none;cursor:pointer;padding:6px;color:#fff}
+.hbell svg{width:20px;height:20px;stroke:#fff;fill:none;stroke-width:1.8}
+.status{position:relative;z-index:5;display:flex;justify-content:center;padding:16px 18px 0}
+.spill{display:inline-flex;align-items:center;gap:8px;background:#0d0d0d;border:1px solid #1c1c1c;border-radius:24px;padding:7px 14px 7px 11px;font-family:'Inter',sans-serif;font-size:11px;font-weight:600;color:#b8b8b8}
+.spill .dot{width:7px;height:7px;border-radius:50%;background:#22c55e;box-shadow:0 0 8px #22c55e;animation:pl 1.4s infinite}
+.spill .mut{color:#5a5a5a;font-weight:400;margin-left:2px}
+@keyframes pl{0%,100%{opacity:1}50%{opacity:0.4}}
+.hero{position:relative;z-index:5;padding:50px 22px 20px;max-width:640px;margin:0 auto;text-align:center}
+.hero h1{font-family:'Inter',sans-serif;font-size:26px;font-weight:800;letter-spacing:1.5px;margin-bottom:36px;
+  background:linear-gradient(90deg,#38bdf8,#a78bfa,#38bdf8);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 24px rgba(56,189,248,0.35));}
+.hero p{font-family:'Inter',sans-serif;font-size:17px;font-weight:500;line-height:1.65;color:#b8b8b8;letter-spacing:0.2px}
+.hero p + p{margin-top:14px}
+.ctas{position:relative;z-index:5;display:flex;gap:12px;justify-content:center;padding:24px 18px 50px;flex-wrap:wrap;max-width:440px;margin:0 auto}
+.cbtn{flex:1;min-width:140px;padding:14px 20px;border-radius:10px;font-family:'Inter',sans-serif;font-size:14px;font-weight:800;letter-spacing:0.5px;cursor:pointer;text-decoration:none;display:inline-flex;align-items:center;justify-content:center;gap:8px;border:1px solid transparent;transition:all 0.2s}
+.cb-white{background:#38bdf8;color:#000}
+.cb-white:hover{background:#7dd3fc}
+.cb-out{background:transparent;border-color:#2a2a2a;color:#fff}
+.cb-out:hover{border-color:#38bdf8;background:#0d0d0d}
+.cbtn svg{width:16px;height:16px;stroke:currentColor;fill:none;stroke-width:2.2}
+.psec{position:relative;z-index:5;max-width:1200px;margin:0 auto;padding:0 18px 80px;scroll-margin-top:20px}
+.ptitle{text-align:center;font-family:'Inter',sans-serif;font-size:24px;font-weight:800;letter-spacing:1px;color:#fff;margin-bottom:8px}
+.psub{text-align:center;font-size:11px;color:#7a7a7a;letter-spacing:3px;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+.pnote{text-align:center;font-size:11px;color:#7a8ba0;max-width:560px;margin:0 auto 30px;line-height:1.6;padding:10px 16px;background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.15);border-radius:10px}
+.pgrid{display:grid;grid-template-columns:repeat(auto-fit,minmax(280px,1fr));gap:18px}
+@media(max-width:700px){.pgrid{grid-template-columns:1fr}}
+.pc{background:#0b0b0e;border:1.5px solid #1f1f24;border-radius:18px;padding:32px 22px 22px;position:relative;display:flex;flex-direction:column;transition:all 0.3s}
+.pc.blue{border-color:rgba(56,189,248,0.45)}
+.pc.blue:hover{border-color:#38bdf8;box-shadow:0 0 40px rgba(56,189,248,0.25);transform:translateY(-4px)}
+.pc.purple{border-color:rgba(139,92,246,0.5)}
+.pc.purple:hover{border-color:#8b5cf6;box-shadow:0 0 40px rgba(139,92,246,0.3);transform:translateY(-4px)}
+.pc.gold{border-color:rgba(245,158,11,0.5)}
+.pc.gold:hover{border-color:#f59e0b;box-shadow:0 0 40px rgba(245,158,11,0.25);transform:translateY(-4px)}
+.ribbon{position:absolute;top:-11px;right:20px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:1.5px;padding:5px 12px;border-radius:20px;text-transform:uppercase;box-shadow:0 4px 20px rgba(139,92,246,0.5)}
+.pi{width:64px;height:64px;margin:0 auto 20px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.pc.blue .pi{background:rgba(56,189,248,0.08);border:1.5px solid rgba(56,189,248,0.35);color:#38bdf8}
+.pc.purple .pi{background:rgba(139,92,246,0.08);border:1.5px solid rgba(139,92,246,0.4);color:#a78bfa}
+.pc.gold .pi{background:rgba(245,158,11,0.08);border:1.5px solid rgba(245,158,11,0.4);color:#fbbf24}
+.pi svg{width:28px;height:28px}
+.pn{text-align:center;font-family:'Inter',sans-serif;font-size:20px;font-weight:800;letter-spacing:5px;margin-bottom:14px;color:#fff;text-transform:uppercase}
+.pl{display:flex;justify-content:center;align-items:center;gap:10px;margin-bottom:8px}
+.op{font-family:'Inter',sans-serif;font-size:15px;font-weight:700;color:#4a4a4a;text-decoration:line-through}
+.deal{background:#dc2626;color:#fff;font-family:'Inter',sans-serif;font-size:9px;font-weight:800;letter-spacing:1.2px;padding:3px 8px;border-radius:5px}
+.pm{text-align:center;font-family:'Inter',sans-serif;font-size:48px;font-weight:900;letter-spacing:-1px;margin-bottom:26px;line-height:1;color:#fff}
+.pm .cur{font-size:26px;font-weight:700;vertical-align:top;line-height:1;display:inline-block;margin-right:2px}
+.feats{list-style:none;margin-bottom:22px;flex:1}
+.feats li{display:flex;align-items:flex-start;gap:10px;padding:7px 0;font-size:13px;color:#d8d8dd;line-height:1.45;font-weight:500}
+.feats li .ic{flex-shrink:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;margin-top:2px;color:#22c55e}
+.feats li .ic svg{width:14px;height:14px}
+.bb{width:100%;padding:13px;border-radius:10px;font-family:'Inter',sans-serif;font-size:12px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;color:#fff}
+.pc.blue .bb{background:linear-gradient(135deg,#38bdf8,#0284c7);box-shadow:0 6px 24px rgba(56,189,248,0.3)}
+.pc.purple .bb{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 6px 24px rgba(139,92,246,0.35)}
+.pc.gold .bb{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 6px 24px rgba(245,158,11,0.3);color:#000}
+.an{text-align:center;font-size:10px;color:#4a4a4a;margin-top:10px;letter-spacing:0.5px;font-weight:500}
+.tg{position:fixed;right:18px;bottom:18px;width:52px;height:52px;border-radius:50%;background:#22a7e8;display:flex;align-items:center;justify-content:center;box-shadow:0 8px 28px rgba(34,167,232,0.5);cursor:pointer;z-index:20;border:none;text-decoration:none}
+.tg svg{width:26px;height:26px;fill:#fff}
+.mtop{position:fixed;inset:0;background:rgba(0,0,0,0.85);backdrop-filter:blur(8px);z-index:100;display:none;align-items:center;justify-content:center;padding:18px}
+.mtop.on{display:flex}
+.mbox{background:#141414;border:1px solid #262626;border-radius:18px;padding:22px;max-width:440px;width:100%;position:relative;font-family:'Inter',sans-serif}
+.mh-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:24px}
+.mh-row h3{font-size:17px;font-weight:700;color:#fff;letter-spacing:0.2px}
+.mclose{width:34px;height:34px;border-radius:50%;border:1px solid #2a2a2a;background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mclose:hover{background:#1e1e1e}
+.mclose svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+.micon{width:56px;height:56px;margin:0 auto 18px;display:flex;align-items:center;justify-content:center}
+.micon svg{width:56px;height:56px;stroke:#fff;fill:none;stroke-width:1.5}
+.mtitle{text-align:center;font-size:19px;font-weight:800;color:#fff;margin-bottom:14px;letter-spacing:0.3px}
+.mtext{text-align:center;font-size:13px;line-height:1.65;color:#a8a8a8;margin-bottom:22px}
+.mbtn{width:100%;padding:14px;border-radius:10px;background:#fff;color:#000;border:none;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.mbtn:hover{background:#e5e5e5}
+</style>
+</head>
+<body>
+
+<div class="ann" id="ann">
+<span id="home-notif">IND server is disabled &mdash; please wait patiently!</span>
+<button class="cls" onclick="document.getElementById('ann').style.display='none'">✕</button>
+</div>
+
+<div class="hdr">
+<div class="hlogo">
+<img src="https://files.catbox.moe/1o431f.jpg" alt="Logo" style="width:34px;height:34px;border-radius:8px;object-fit:cover;border:1.5px solid #38bdf8;box-shadow:0 0 8px rgba(56,189,248,0.6)">
+<span class="hname">SHAPPNO LV UP</span>
+</div>
+<button class="hbell"><svg viewBox="0 0 24 24"><path d="M18 8a6 6 0 0 0-12 0c0 7-3 9-3 9h18s-3-2-3-9"/><path d="M13.73 21a2 2 0 0 1-3.46 0"/></svg></button>
+</div>
+
+<div class="status">
+<span class="spill"><span class="dot"></span> System Operational <span class="mut">0ms</span></span>
+</div>
+
+<div class="hero">
+<h1>SHAPPNO LV UP</h1>
+<p>Fast, reliable Free Fire level-up automation built for players who want results without the grind. Simple setup, real progress.</p>
+<p>Level up your account faster &mdash; stay ahead of the competition.</p>
+</div>
+
+<div class="ctas">
+<a href="/login" class="cbtn cb-white">Get Started <svg viewBox="0 0 24 24"><line x1="5" y1="12" x2="19" y2="12"/><polyline points="12 5 19 12 12 19"/></svg></a>
+<a href="#pricing" class="cbtn cb-out">Pricing <svg viewBox="0 0 24 24"><polyline points="6 9 12 15 18 9"/></svg></a>
+</div>
+
+<div class="psec" id="pricing">
+<div class="ptitle">Choose Your Plan</div>
+<div class="psub">Works On All Servers</div>
+<div class="pnote">All plans work globally across every Free Fire server &mdash; IND, BD, EUROPE, SG, TH, PH, VN, MY, ID, HK, TW and more. Price shown in USD.</div>
+<div class="pgrid" id="pgrid"></div>
+
+<div style="max-width:640px;margin:32px auto 0;display:grid;grid-template-columns:1fr 1fr;gap:14px">
+<div style="background:linear-gradient(135deg,rgba(34,197,94,0.12),rgba(34,197,94,0.03));border:1.5px solid rgba(34,197,94,0.4);border-radius:14px;padding:16px;text-align:center">
+<div style="display:inline-flex;width:40px;height:40px;border-radius:50%;background:rgba(34,197,94,0.15);color:#22c55e;align-items:center;justify-content:center;margin-bottom:8px">
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z"></path></svg>
+</div>
+<div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;margin-bottom:4px">normal</div>
+<div style="font-size:11px;color:#86efac;font-weight:600">7 Days ban only </div>
+</div>
+<div style="background:linear-gradient(135deg,rgba(245,158,11,0.15),rgba(245,158,11,0.03));border:1.5px solid rgba(245,158,11,0.5);border-radius:14px;padding:16px;text-align:center">
+<div style="display:inline-flex;width:40px;height:40px;border-radius:50%;background:rgba(245,158,11,0.15);color:#f59e0b;align-items:center;justify-content:center;margin-bottom:8px">
+<svg viewBox="0 0 24 24" width="22" height="22" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><path d="M2 18h20l-1.5-9-4 3-4.5-7-4.5 7-4-3z"></path></svg>
+</div>
+<div style="font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;letter-spacing:2px;text-transform:uppercase;color:#fff;margin-bottom:4px">VIP</div>
+<div style="font-size:11px;color:#fcd34d;font-weight:600">no ban </div>
+</div>
+</div>
+
+</div>
+
+<a class="tg" href="https://t.me/shappno_04xx" target="_blank"><svg viewBox="0 0 24 24"><path d="M9.78 18.65l.28-4.23 7.68-6.92c.34-.31-.07-.46-.52-.19L7.74 13.3 3.64 12c-.88-.25-.89-.86.2-1.3l15.97-6.16c.73-.33 1.43.18 1.15 1.3l-2.72 12.81c-.19.91-.74 1.13-1.5.71L12.6 16.3l-1.99 1.93c-.23.23-.42.42-.83.42z"/></svg></a>
+
+<div class="mtop" id="maint">
+<div class="mbox">
+<div class="mh-row">
+<h3>Important Update</h3>
+<button class="mclose" onclick="document.getElementById('maint').classList.remove('on')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+</div>
+<div class="micon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></div>
+<div class="mtitle" id="notif-title">Important Update</div>
+<div class="mtext" id="notif-text">Loading...</div>
+<a class="mbtn" href="https://t.me/shappno_04xx" target="_blank">Chat Now</a>
+</div>
+</div>
+
+<script>
+const PLANS=[
+{id:'starting',name:'STARTING',style:'blue',icon:'bolt',hours:24,slots:3,price:'1',old:'2',pop:false},
+{id:'basic',name:'BASIC',style:'purple',icon:'star',hours:48,slots:3,price:'2',old:'4',pop:true},
+{id:'premium',name:'PREMIUM',style:'gold',icon:'crown',hours:72,slots:4,price:'2.5',old:'6',pop:false}
+];
+const TG='shappno_04xx';
+const ICONS={
+bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+star:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>',
+crown:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="28" height="28"><path d="M2 18h20l-1.5-9-4 3-4.5-7-4.5 7-4-3z"></path></svg>',
+check:'<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="20 6 9 17 4 12"></polyline></svg>'
+};
+
+function feat(p){
+const d=p.hours>=24?Math.round(p.hours/24)+' Day'+(p.hours>=48?'s':''):p.hours+' Hours';
+const sp=p.id==='premium'?'Fastest Leveling Speed Available':'Fast Leveling Performance';
+const off=p.id==='premium'?'Runs 24/7 — No Need To Stay Online':'Runs While You Are Offline';
+return[
+'Access To The Panel For '+d,
+sp,
+'Run Multiple Accounts At Once',
+'Restart & Manage Accounts Anytime',
+off,
+'Telegram Payment Support & Quick Help',
+p.slots+' Concurrent Account'+(p.slots>1?'s':'')
+];
+}
+
+function render(){
+const g=document.getElementById('pgrid');
+let h='';
+PLANS.forEach(p=>{
+let fh='';
+feat(p).forEach(t=>{fh+='<li><span class="ic">'+ICONS.check+'</span><span>'+t+'</span></li>';});
+h+='<div class="pc '+p.style+'">';
+if(p.pop)h+='<div class="ribbon">Most Popular</div>';
+h+='<div class="pi">'+ICONS[p.icon]+'</div>';
+h+='<div class="pn">'+p.name+'</div>';
+h+='<div class="pl"><span class="op">$'+p.old+'</span><span class="deal">Deal</span></div>';
+h+='<div class="pm"><span class="cur">$</span>'+p.price+'</div>';
+h+='<ul class="feats">'+fh+'</ul>';
+h+='<button class="bb" onclick="buy(\''+p.id+'\')">Buy '+p.name+'</button>';
+h+='<div class="an">Instant Activation After Payment</div>';
+h+='</div>';
+});
+g.innerHTML=h;
+}
+
+function buy(id){
+const p=PLANS.find(x=>x.id===id);
+let m='Hi, I Want To Buy The '+p.name+' Plan.\n\nPlan: $'+p.price+'\nDuration: '+p.hours+' Hours\nSlots: '+p.slots+'\n\nPlease Send Payment Details.';
+window.open('https://t.me/'+TG+'?text='+encodeURIComponent(m),'_blank');
+}
+render();
+
+document.querySelectorAll('a[href^="#"]').forEach(a=>{
+  a.addEventListener('click',e=>{
+    const id=a.getAttribute('href');
+    if(id.length>1){
+      const el=document.querySelector(id);
+      if(el){
+        e.preventDefault();
+        el.scrollIntoView({behavior:'smooth',block:'start'});
+      }
+    }
+  });
+});
+
+(async function loadHomeNotif(){
+  try{
+    const r = await fetch('/api/notification');
+    const d = await r.json();
+    if(d.status==='ok' && d.text){
+      document.getElementById('home-notif').textContent = d.text;
+      document.getElementById('notif-text').textContent = d.text;
+    }
+  }catch(e){}
+})();
+
+document.getElementById('maint').classList.add('on');
+document.getElementById('maint').addEventListener('click',e=>{
+  if(e.target.id==='maint')document.getElementById('maint').classList.remove('on');
+});
+</script>
+</body>
+</html>

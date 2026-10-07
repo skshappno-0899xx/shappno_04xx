@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Admin Panel - SHAPPNO LV UP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#000;color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased}
+:root{--bg:#000;--card:#08080c;--card2:#101015;--line:#1a1a22;--line2:#25252e;--txt:#fff;--mut:#8a8a95;--dim:#55555f;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--lightblue:#38bdf8;--purple:#8b5cf6;--gold:#f59e0b}
+.mono{font-family:'JetBrains Mono',monospace}
+.orb{font-family:'Orbitron',sans-serif}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#262626;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#3a3a3a}
+body{background:#000}
+.top{background:rgba(0,0,0,0.95);border-bottom:1px solid var(--line);position:sticky;top:0;z-index:50}
+.top-in{max-width:1400px;margin:0 auto;padding:14px 24px;display:flex;align-items:center;justify-content:space-between}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px}
+.lm{width:30px;height:30px;background:linear-gradient(135deg,#ef4444,#b91c1c);color:#fff;border-radius:8px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:14px}
+.out{background:transparent;border:1px solid var(--line2);color:var(--mut);padding:8px 14px;border-radius:8px;font-family:'Orbitron',sans-serif;font-size:10px;font-weight:700;letter-spacing:1.5px;text-transform:uppercase;text-decoration:none;transition:all 0.2s}
+.out:hover{border-color:var(--red);color:var(--red)}
+.main{max-width:1400px;margin:0 auto;padding:28px 24px 80px}
+.st{font-family:'Orbitron',sans-serif;font-size:14px;font-weight:800;letter-spacing:1.5px;text-transform:uppercase;margin-bottom:14px;display:flex;align-items:center;gap:10px}
+.st::before{content:'';width:3px;height:16px;background:#38bdf8;border-radius:2px}
+.panel{background:var(--card);border:1px solid var(--line);border-radius:14px;padding:22px;margin-bottom:28px}
+.grid3{display:grid;grid-template-columns:1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+.grid4{display:grid;grid-template-columns:1fr 1fr 1fr 1fr;gap:14px;margin-bottom:18px}
+@media(max-width:900px){.grid4{grid-template-columns:1fr 1fr}.grid3{grid-template-columns:1fr 1fr}}
+@media(max-width:600px){.grid4{grid-template-columns:1fr}.grid3{grid-template-columns:1fr}}
+.f label{display:block;font-size:10px;font-weight:800;color:var(--mut);text-transform:uppercase;letter-spacing:1.5px;margin-bottom:6px}
+.f input,.f select,.f textarea{width:100%;background:var(--card2);border:1px solid var(--line2);border-radius:10px;padding:11px 14px;color:#fff;font-size:14px;font-family:'Inter',sans-serif;outline:none;transition:border 0.2s}
+.f input:focus,.f select:focus,.f textarea:focus{border-color:#38bdf8}
+.f textarea{resize:vertical;min-height:60px}
+.vip-opt{display:flex;align-items:center;gap:10px;padding:12px 14px;background:var(--card2);border:1px solid var(--line2);border-radius:10px;cursor:pointer;user-select:none;transition:all 0.2s}
+.vip-opt:hover{border-color:#f59e0b}
+.vip-opt input{width:auto;cursor:pointer;accent-color:#f59e0b;width:18px;height:18px;flex-shrink:0}
+.vip-opt span{font-size:12px;font-weight:700;color:#f59e0b;letter-spacing:1px;text-transform:uppercase}
+.btn{background:linear-gradient(135deg,#38bdf8,#0284c7);color:#fff;border:none;padding:12px 26px;border-radius:10px;font-family:'Orbitron',sans-serif;font-size:11px;font-weight:700;letter-spacing:2px;text-transform:uppercase;cursor:pointer;transition:all 0.2s}
+.btn:hover{box-shadow:0 8px 24px rgba(56,189,248,0.4)}
+.btn-red{background:linear-gradient(135deg,#ef4444,#dc2626)}
+.btn-red:hover{box-shadow:0 8px 24px rgba(239,68,68,0.4)}
+.hint{font-size:11px;color:var(--mut);margin-top:10px}
+.tw{background:var(--card);border:1px solid var(--line);border-radius:14px;overflow:hidden}
+table{width:100%;border-collapse:collapse;font-size:13px}
+th{text-align:left;padding:14px 16px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;color:var(--mut);letter-spacing:1.5px;text-transform:uppercase;border-bottom:1px solid var(--line2);background:var(--card2)}
+td{padding:14px 16px;border-bottom:1px solid var(--line);vertical-align:middle;color:#fff}
+tbody tr:last-child td{border-bottom:none}
+tbody tr:hover{background:rgba(255,255,255,0.02)}
+.mono{font-family:'JetBrains Mono',monospace;font-size:12px}
+.muted{color:var(--mut)}
+.badge{display:inline-block;padding:4px 10px;border-radius:6px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px}
+.ba{background:rgba(34,197,94,0.15);color:var(--green);border:1px solid rgba(34,197,94,0.3)}
+.be{background:rgba(239,68,68,0.15);color:var(--red);border:1px solid rgba(239,68,68,0.3)}
+.bv{background:rgba(245,158,11,0.15);color:#f59e0b;border:1px solid rgba(245,158,11,0.4)}
+.acts{display:flex;gap:6px;flex-wrap:wrap}
+.mini{background:var(--card2);border:1px solid var(--line2);color:var(--mut);padding:7px 11px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1px;border-radius:6px;cursor:pointer;transition:all 0.15s}
+.mini:hover{border-color:#38bdf8;color:#38bdf8}
+.mini.danger:hover{border-color:var(--red);color:var(--red)}
+.mini.gold{color:#f59e0b;border-color:rgba(245,158,11,0.35)}
+.mini.gold:hover{border-color:#f59e0b;background:rgba(245,158,11,0.08)}
+.mini.green{color:#22c55e;border-color:rgba(34,197,94,0.35)}
+.mini.green:hover{border-color:#22c55e;background:rgba(34,197,94,0.08)}
+.empty{text-align:center;padding:60px 20px;color:var(--mut);font-size:14px}
+.toast{position:fixed;bottom:24px;right:24px;background:var(--card2);border:1px solid #38bdf8;color:#fff;padding:14px 20px;border-radius:10px;font-size:13px;font-weight:700;box-shadow:0 8px 32px rgba(0,0,0,0.6);opacity:0;transform:translateY(20px);transition:all 0.3s;pointer-events:none;z-index:200;max-width:360px}
+.toast.on{opacity:1;transform:translateY(0)}
+.toast.err{border-color:var(--red)}
+.modal{position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:300;padding:18px}
+.modal.on{display:flex}
+.mbox{background:#141414;border:1px solid #262626;border-radius:16px;padding:24px;max-width:400px;width:100%;font-family:'Inter',sans-serif}
+.mbox h3{font-size:16px;font-weight:700;color:#fff;margin-bottom:16px;text-align:center}
+.mbox .f{margin-bottom:14px}
+.mbox input{width:100%;background:#0a0a0a;border:1px solid #2a2a2e;border-radius:10px;padding:12px 14px;color:#fff;font-size:14px;outline:none}
+.mbox input:focus{border-color:#38bdf8}
+.mbtns{display:flex;gap:10px;margin-top:6px}
+.mbtns button{flex:1;padding:12px;border-radius:10px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s}
+.mbyes{background:#38bdf8;color:#000}
+.mbyes:hover{background:#7dd3fc}
+.mbno{background:#1c1c1e;color:#fff;border:1px solid #2a2a2e!important}
+.mbno:hover{background:#242428}
+</style>
+</head>
+<body>
+<div class="top">
+<div class="top-in">
+<div class="logo"><span class="lm">A</span><span>SHAPPNO LV UP &mdash; ADMIN</span></div>
+<a class="out" href="/admin-shappno/logout">Logout</a>
+</div>
+</div>
+<div class="main">
+
+<!-- ==================== ADMIN CREDENTIALS ==================== -->
+<div class="st">Admin Credentials</div>
+<div class="panel">
+<div class="grid3">
+<div class="f">
+<label>New Username (optional)</label>
+<input type="text" id="admNewUser" placeholder="Leave empty to keep current" autocomplete="off">
+</div>
+<div class="f">
+<label>New Password (optional)</label>
+<input type="text" id="admNewPass" placeholder="Leave empty to keep current" autocomplete="off">
+</div>
+<div class="f">
+<label>Current Password (required)</label>
+<input type="password" id="admCurPass" placeholder="Enter current password" autocomplete="off">
+</div>
+</div>
+<button class="btn btn-red" onclick="changeAdminCreds()">Save Credentials</button>
+<div class="hint">You Must Enter Current Password To Change Username Or Password. Changes Persist After Restart.</div>
+</div>
+
+<!-- ==================== WEBSITE NOTIFICATION ==================== -->
+<div class="st">Website Notification</div>
+<div class="panel">
+<div class="f" style="margin-bottom:14px">
+<label>Notification Text (shown on Home &amp; Dashboard)</label>
+<textarea id="notifText" placeholder="Enter notification text...">IND server is disabled — please wait patiently!</textarea>
+</div>
+<button class="btn" onclick="saveNotif()">Save Notification</button>
+<div class="hint">This text will appear on the Home page announcement bar and Dashboard popup.</div>
+</div>
+
+<!-- ==================== CREATE USER ==================== -->
+<div class="st">Create User</div>
+<div class="panel">
+<div class="grid4">
+<div class="f"><label>Username</label><input type="text" id="nu" autocomplete="off"></div>
+<div class="f"><label>Password</label><input type="text" id="np" autocomplete="off"></div>
+<div class="f"><label>Slots (Max 1000)</label><input type="number" id="ns" value="3" min="1" max="1000"></div>
+<div class="f"><label>Duration (Hours)</label><input type="number" id="nh" value="24" min="1" max="8760"></div>
+</div>
+<div class="vip-opt" style="margin-bottom:14px">
+<input type="checkbox" id="nvip">
+<span>VIP Account (Enables Bulk File Upload)</span>
+</div>
+<button class="btn" onclick="createU()">Create User</button>
+<div class="hint">Timer Starts Immediately Upon Creation.</div>
+</div>
+
+<!-- ==================== ALL USERS ==================== -->
+<div class="st">All Users</div>
+<div class="tw" id="tbl"><div class="empty">Loading...</div></div>
+</div>
+
+<div class="modal" id="pwdModal">
+<div class="mbox">
+<h3 id="pwdTitle">Change Password</h3>
+<div class="f">
+<label>New Password</label>
+<input type="text" id="pwdInput" placeholder="Enter new password">
+</div>
+<div class="mbtns">
+<button class="mbyes" id="pwdYes">Save</button>
+<button class="mbno" id="pwdNo">Cancel</button>
+</div>
+</div>
+</div>
+
+<div class="toast" id="toast"></div>
+<script>
+function esc(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function toast(msg,err){const t=document.getElementById('toast');t.textContent=msg;t.classList.toggle('err',!!err);t.classList.add('on');setTimeout(()=>t.classList.remove('on'),2600)}
+function fmtLeft(exp){const now=Math.floor(Date.now()/1000);const s=exp-now;if(s<=0)return{t:'Expired',e:true};const d=Math.floor(s/86400);const h=Math.floor((s%86400)/3600);const m=Math.floor((s%3600)/60);const sec=Math.floor(s%60);const pad=n=>String(n).padStart(2,'0');let str='';if(d>0)str+=d+'d ';str+=pad(h)+':'+pad(m)+':'+pad(sec);return{t:str,e:false}}
+function fmtDate(ts){return new Date(ts*1000).toLocaleString()}
+
+async function changeAdminCreds(){
+const newUser = document.getElementById('admNewUser').value.trim();
+const newPass = document.getElementById('admNewPass').value.trim();
+const curPass = document.getElementById('admCurPass').value.trim();
+
+if(!curPass){toast('Current Password Required',true);return}
+if(!newUser && !newPass){toast('Enter New Username Or Password',true);return}
+
+try{
+const r=await fetch('/api/admin/change-credentials',{
+  method:'POST',
+  headers:{'Content-Type':'application/json'},
+  body:JSON.stringify({
+    current_password: curPass,
+    new_username: newUser,
+    new_password: newPass
+  })
+});
+const d = await r.json();
+if(d.status==='ok'){
+  toast('Credentials Updated');
+  document.getElementById('admNewUser').value = '';
+  document.getElementById('admNewPass').value = '';
+  document.getElementById('admCurPass').value = '';
+  setTimeout(()=>location.reload(), 1800);
+} else {
+  toast(d.error || 'Failed', true);
+}
+}catch(e){toast('Network Error',true)}
+}
+
+async function saveNotif(){
+try{
+const t=document.getElementById('notifText').value;
+const r=await fetch('/api/admin/set-notification',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({text:t})});
+const d=await r.json();
+if(d.status==='ok'){toast('Notification Saved')}
+else{toast(d.error||'Failed',true)}
+}catch(e){toast('Network Error',true)}
+}
+
+async function createU(){
+const u=document.getElementById('nu').value.trim();
+const p=document.getElementById('np').value.trim();
+const s=parseInt(document.getElementById('ns').value);
+const h=parseInt(document.getElementById('nh').value);
+const vip=document.getElementById('nvip').checked;
+if(!u||!p){toast('Username And Password Required',true);return}
+if(s<1||s>1000){toast('Slots Must Be 1-1000',true);return}
+if(h<1||h>8760){toast('Hours Must Be 1-8760',true);return}
+try{
+const r=await fetch('/api/admin/create-user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,password:p,slots:s,hours:h,vip:vip})});
+const d=await r.json();
+if(d.status==='ok'){toast('User Created: '+u+(vip?' (VIP)':''));document.getElementById('nu').value='';document.getElementById('np').value='';document.getElementById('nvip').checked=false;loadU()}
+else{toast(d.error||'Failed',true)}
+}catch(e){toast('Network Error',true)}
+}
+
+async function loadU(){
+try{
+const r=await fetch('/api/admin/list-users');
+const d=await r.json();
+if(d.status!=='ok')return;
+const users=d.users||[];
+const w=document.getElementById('tbl');
+if(users.length===0){w.innerHTML='<div class="empty">No Users Yet</div>';return}
+let h='<table><thead><tr>';
+h+='<th>Username</th><th>Type</th><th>Slots</th><th>Used</th><th>Expires</th><th>Actions</th>';
+h+='</tr></thead><tbody>';
+users.forEach(u=>{
+const e=fmtLeft(u.expires_at);
+const b=e.e?'<span class="badge be">Expired</span>':'<span class="badge ba">'+e.t+'</span>';
+const vb=u.is_vip?'<span class="badge bv">VIP</span>':'<span class="badge" style="background:#1a1a22;color:#666;border:1px solid #2a2a2e">Normal</span>';
+h+='<tr>';
+h+='<td class="mono">'+esc(u.username)+'</td>';
+h+='<td>'+vb+'</td>';
+h+='<td class="mono">'+u.slots+'</td>';
+h+='<td class="mono muted">'+(u.used_slots||0)+'</td>';
+h+='<td>'+b+'</td>';
+h+='<td><div class="acts">';
+h+='<button class="mini" onclick="ext(\''+esc(u.username)+'\',24)">+24H</button>';
+h+='<button class="mini" onclick="slot(\''+esc(u.username)+'\',10)">+10 Slots</button>';
+h+='<button class="mini" onclick="toggleVip(\''+esc(u.username)+'\')">'+(u.is_vip?'Remove VIP':'Make VIP')+'</button>';
+h+='<button class="mini gold" onclick="changePwd(\''+esc(u.username)+'\')">Change Pass</button>';
+h+='<button class="mini green" onclick="downloadUser(\''+esc(u.username)+'\')">Download JSON</button>';
+h+='<button class="mini danger" onclick="delU(\''+esc(u.username)+'\')">Delete</button>';
+h+='</div></td>';
+h+='</tr>'
+});
+h+='</tbody></table>';
+w.innerHTML=h
+}catch(e){}
+}
+
+async function ext(u,h){
+try{
+const r=await fetch('/api/admin/extend-time',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,hours:h})});
+const d=await r.json();
+if(d.status==='ok'){toast('Extended '+u+' By '+h+'h');loadU()}
+else{toast(d.error||'Failed',true)}
+}catch(e){toast('Network Error',true)}
+}
+
+async function slot(u,c){
+try{
+const r=await fetch('/api/admin/add-slot',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u,count:c})});
+const d=await r.json();
+if(d.status==='ok'){toast('Added '+c+' Slot To '+u);loadU()}
+else{toast(d.error||'Failed',true)}
+}catch(e){toast('Network Error',true)}
+}
+
+async function toggleVip(u){
+try{
+const r=await fetch('/api/admin/toggle-vip',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});
+const d=await r.json();
+if(d.status==='ok'){toast('VIP Updated For '+u);loadU()}
+else{toast(d.error||'Failed',true)}
+}catch(e){toast('Network Error',true)}
+}
+
+function changePwd(u){
+const modal=document.getElementById('pwdModal');
+const title=document.getElementById('pwdTitle');
+const inp=document.getElementById('pwdInput');
+const yes=document.getElementById('pwdYes');
+const no=document.getElementById('pwdNo');
+
+title.textContent='Change Password - '+u;
+inp.value='';
+modal.classList.add('on');
+setTimeout(()=>inp.focus(),100);
+
+yes.onclick=async()=>{
+  const newPwd=inp.value.trim();
+  if(!newPwd){toast('Password Required',true);return}
+  try{
+    const r=await fetch('/api/admin/reset-password',{
+      method:'POST',
+      headers:{'Content-Type':'application/json'},
+      body:JSON.stringify({username:u,password:newPwd})
+    });
+    const d=await r.json();
+    if(d.status==='ok'){toast('Password Updated For '+u);modal.classList.remove('on')}
+    else{toast(d.error||'Failed',true)}
+  }catch(e){toast('Network Error',true)}
+};
+
+no.onclick=()=>{modal.classList.remove('on')};
+
+inp.onkeydown=(ev)=>{if(ev.key==='Enter')yes.click()};
+}
+
+function downloadUser(u){
+try{
+  const url='/api/admin/download-user-accounts?username='+encodeURIComponent(u);
+  const a=document.createElement('a');
+  a.href=url;
+  a.download=u+'_accounts.json';
+  document.body.appendChild(a);
+  a.click();
+  document.body.removeChild(a);
+  toast('Downloading '+u+'_accounts.json');
+}catch(e){toast('Download Failed',true)}
+}
+
+async function delU(u){
+if(!confirm('Delete User '+u+'? This Wipes All Their Data.'))return;
+try{
+const r=await fetch('/api/admin/delete-user',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({username:u})});
+const d=await r.json();
+if(d.status==='ok'){toast('Deleted '+u);loadU()}
+else{toast(d.error||'Failed',true)}
+}catch(e){toast('Network Error',true)}
+}
+
+async function loadNotif(){
+try{
+const r=await fetch('/api/admin/get-notification');
+const d=await r.json();
+if(d.status==='ok'){document.getElementById('notifText').value=d.text||''}
+}catch(e){}
+}
+
+document.getElementById('pwdModal').addEventListener('click',e=>{
+  if(e.target.id==='pwdModal')document.getElementById('pwdModal').classList.remove('on');
+});
+
+loadNotif();
+loadU();
+setInterval(loadU,5000);
+</script>
+</body>
+</html>

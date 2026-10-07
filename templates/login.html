@@ -1,0 +1,150 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Login - SHAPPNO LV UP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#000;color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased}
+:root{--bg:#000;--card:#08080c;--card2:#101015;--line:#1a1a22;--line2:#25252e;--txt:#fff;--mut:#8a8a95;--dim:#55555f;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--lightblue:#38bdf8;--purple:#8b5cf6;--gold:#f59e0b}
+.mono{font-family:'JetBrains Mono',monospace}
+.orb{font-family:'Orbitron',sans-serif}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#262626;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#3a3a3a}
+body{background:#000;display:flex;align-items:center;justify-content:center;padding:20px;min-height:100vh;position:relative;overflow:hidden}
+body::before{content:'';position:absolute;inset:0;background:
+  linear-gradient(rgba(56,189,248,0.02) 1px,transparent 1px),
+  linear-gradient(90deg,rgba(56,189,248,0.02) 1px,transparent 1px);
+  background-size:60px 60px;pointer-events:none;mask-image:radial-gradient(ellipse at center,#000 20%,transparent 80%);
+  -webkit-mask-image:radial-gradient(ellipse at center,#000 20%,transparent 80%)}
+.wrap{width:100%;max-width:440px;position:relative;z-index:1}
+.brand{display:flex;flex-direction:column;align-items:center;justify-content:center;gap:14px;margin-bottom:32px}
+.img-logo{
+  width:88px;height:88px;
+  border-radius:14px;
+  object-fit:cover;
+  border:2px solid #38bdf8;
+  box-shadow:
+    0 0 15px rgba(56,189,248,0.9),
+    0 0 30px rgba(56,189,248,0.6),
+    0 0 60px rgba(56,189,248,0.4);
+  animation:glow 1.8s ease-in-out infinite alternate;
+}
+@keyframes glow{
+  0%{box-shadow:0 0 15px rgba(56,189,248,0.9),0 0 30px rgba(56,189,248,0.6),0 0 60px rgba(56,189,248,0.4);transform:scale(1)}
+  100%{box-shadow:0 0 25px rgba(56,189,248,1),0 0 50px rgba(56,189,248,0.9),0 0 100px rgba(56,189,248,0.6);transform:scale(1.03)}
+}
+.brand-txt{font-family:'Orbitron',sans-serif;font-size:18px;font-weight:900;letter-spacing:3px;
+  background:linear-gradient(90deg,#38bdf8,#7dd3fc,#38bdf8);
+  -webkit-background-clip:text;background-clip:text;-webkit-text-fill-color:transparent;
+  filter:drop-shadow(0 0 12px rgba(56,189,248,0.6));}
+.welcome{text-align:center;margin-bottom:28px}
+.welcome h1{font-family:'Inter',sans-serif;font-size:24px;font-weight:700;letter-spacing:-0.5px;color:#fff;margin-bottom:8px}
+.welcome p{font-size:13px;color:#7a7a7a;font-weight:400}
+.err{background:rgba(239,68,68,0.08);border:1px solid rgba(239,68,68,0.3);color:#ef4444;padding:11px;border-radius:10px;font-size:12px;margin-bottom:16px;display:none;text-align:center}
+.err.on{display:block}
+.f{margin-bottom:20px}
+.f label{display:block;font-size:12px;font-weight:700;color:#b8b8b8;margin-bottom:9px;text-align:center;letter-spacing:1px;text-transform:uppercase}
+.iw{position:relative}
+.iw svg.lft{position:absolute;left:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#38bdf8;fill:none;stroke-width:1.8;pointer-events:none}
+.iw svg.rgt{position:absolute;right:16px;top:50%;transform:translateY(-50%);width:18px;height:18px;stroke:#38bdf8;fill:none;stroke-width:1.8;cursor:pointer;transition:stroke 0.2s}
+.iw svg.rgt:hover{stroke:#7dd3fc}
+.f input{
+  width:100%;background:transparent;
+  border:1.5px solid #1e293b;border-radius:10px;
+  padding:15px 46px;
+  color:#fff;font-size:14px;
+  font-family:'Inter',sans-serif;font-weight:500;
+  outline:none;transition:all 0.2s;
+}
+.f input::placeholder{color:#4a4a4a;font-weight:400}
+.f input:focus{border-color:#38bdf8;background:rgba(56,189,248,0.04);box-shadow:0 0 0 3px rgba(56,189,248,0.1)}
+.btn{
+  width:100%;padding:17px;border-radius:10px;
+  background:linear-gradient(135deg,#38bdf8,#0284c7);
+  color:#fff;
+  border:none;cursor:pointer;
+  font-family:'Inter',sans-serif;
+  font-size:15px;font-weight:800;
+  letter-spacing:0.5px;
+  display:flex;align-items:center;justify-content:center;gap:10px;
+  transition:all 0.2s;
+  box-shadow:0 6px 24px rgba(56,189,248,0.3);
+  margin-top:8px;
+}
+.btn:hover{box-shadow:0 8px 32px rgba(56,189,248,0.5);transform:translateY(-1px)}
+.btn svg{width:18px;height:18px;stroke:#fff;fill:none;stroke-width:2.2}
+.btn:disabled{opacity:0.6;cursor:not-allowed}
+.foot{text-align:center;margin-top:24px;font-size:13px;color:#6a6a6a}
+.foot a{color:#38bdf8;text-decoration:none;font-weight:700}
+.foot a:hover{text-decoration:underline}
+</style>
+</head>
+<body>
+<div class="wrap">
+
+<div class="brand">
+<img class="img-logo" src="https://files.catbox.moe/1o431f.jpg" alt="Logo">
+<span class="brand-txt">SHAPPNO LV UP</span>
+</div>
+
+<div class="welcome">
+<h1>Welcome Back</h1>
+<p>Enter your password to continue</p>
+</div>
+
+<div class="err" id="err"></div>
+
+<form id="f">
+<div class="f">
+<label>Password</label>
+<div class="iw">
+<svg class="lft" viewBox="0 0 24 24"><rect x="3" y="11" width="18" height="11" rx="2"/><path d="M7 11V7a5 5 0 0 1 10 0v4"/></svg>
+<svg class="rgt" id="eye" viewBox="0 0 24 24"><path d="M1 12s4-8 11-8 11 8 11 8-4 8-11 8-11-8-11-8z"/><circle cx="12" cy="12" r="3"/></svg>
+<input type="password" id="p" placeholder="Enter your password" autocomplete="current-password" required>
+</div>
+</div>
+
+<button type="submit" class="btn" id="sb">
+Login
+<svg viewBox="0 0 24 24"><path d="M15 3h4a2 2 0 0 1 2 2v14a2 2 0 0 1-2 2h-4"/><polyline points="10 17 15 12 10 7"/><line x1="15" y1="12" x2="3" y2="12"/></svg>
+</button>
+</form>
+
+<div class="foot">New here? <a href="/plans">Create account</a></div>
+</div>
+
+<script>
+const eye=document.getElementById('eye');
+const pw=document.getElementById('p');
+eye.addEventListener('click',()=>{
+const t=pw.type==='password'?'text':'password';
+pw.type=t;
+eye.style.stroke=t==='text'?'#7dd3fc':'#38bdf8';
+});
+
+document.getElementById('f').addEventListener('submit',async(e)=>{
+e.preventDefault();
+const err=document.getElementById('err');
+const btn=document.getElementById('sb');
+err.classList.remove('on');
+btn.disabled=true;btn.firstChild.textContent='Signing in...';
+const p=document.getElementById('p').value;
+try{
+const r=await fetch('/login',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({password:p})});
+const d=await r.json();
+if(d.status==='ok')window.location.href=d.redirect||'/dashboard';
+else{err.textContent=d.error||'Login Failed';err.classList.add('on')}
+}catch(ex){err.textContent='Network Error';err.classList.add('on')}
+btn.disabled=false;btn.firstChild.textContent='Login';
+});
+</script>
+</body>
+</html>

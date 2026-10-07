@@ -1,0 +1,134 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0">
+<title>Pricing - SHAPPNO LV UP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#000;color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased}
+:root{--bg:#000;--card:#08080c;--card2:#101015;--line:#1a1a22;--line2:#25252e;--txt:#fff;--mut:#8a8a95;--dim:#55555f;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--lightblue:#38bdf8;--purple:#8b5cf6;--gold:#f59e0b}
+.mono{font-family:'JetBrains Mono',monospace}
+.orb{font-family:'Orbitron',sans-serif}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#262626;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#3a3a3a}
+body{background:radial-gradient(ellipse at top,#0a1020 0%,#000 55%);padding-bottom:60px}
+.head{display:flex;align-items:center;justify-content:space-between;padding:18px 22px;border-bottom:1px solid var(--line);max-width:1400px;margin:0 auto}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Orbitron',sans-serif;font-size:14px;font-weight:700;letter-spacing:2px}
+.logo .lm{width:36px;height:36px;background:linear-gradient(135deg,#38bdf8,#0284c7);border-radius:10px;display:inline-flex;align-items:center;justify-content:center;font-weight:900;font-size:16px;box-shadow:0 0 20px rgba(56,189,248,0.5)}
+.wrap{max-width:1200px;margin:0 auto;padding:44px 22px 0}
+.t{text-align:center;font-family:'Orbitron',sans-serif;font-size:30px;font-weight:800;letter-spacing:2px;text-transform:uppercase;margin-bottom:10px}
+.sub{text-align:center;font-size:11px;color:var(--mut);letter-spacing:4px;text-transform:uppercase;margin-bottom:14px;font-weight:600}
+.note{text-align:center;font-size:12px;color:#7a8ba0;max-width:640px;margin:0 auto 40px;line-height:1.6;padding:12px 18px;background:rgba(56,189,248,0.05);border:1px solid rgba(56,189,248,0.15);border-radius:10px}
+.grid{display:grid;grid-template-columns:repeat(auto-fit,minmax(290px,1fr));gap:20px}
+@media(max-width:700px){.grid{grid-template-columns:1fr}}
+.pc{background:var(--card);border:1.5px solid var(--line2);border-radius:20px;padding:36px 24px 24px;position:relative;transition:all 0.3s;display:flex;flex-direction:column}
+.pc.blue{border-color:rgba(56,189,248,0.45)}
+.pc.blue:hover{border-color:#38bdf8;box-shadow:0 0 40px rgba(56,189,248,0.25);transform:translateY(-4px)}
+.pc.purple{border-color:rgba(139,92,246,0.5)}
+.pc.purple:hover{border-color:#8b5cf6;box-shadow:0 0 40px rgba(139,92,246,0.3);transform:translateY(-4px)}
+.pc.gold{border-color:rgba(245,158,11,0.5)}
+.pc.gold:hover{border-color:#f59e0b;box-shadow:0 0 40px rgba(245,158,11,0.25);transform:translateY(-4px)}
+.ribbon{position:absolute;top:-12px;right:22px;background:linear-gradient(135deg,#8b5cf6,#6d28d9);color:#fff;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:6px 14px;border-radius:20px;text-transform:uppercase;box-shadow:0 4px 20px rgba(139,92,246,0.5)}
+.pi{width:70px;height:70px;margin:0 auto 22px;border-radius:50%;display:flex;align-items:center;justify-content:center}
+.pc.blue .pi{background:rgba(56,189,248,0.08);border:1.5px solid rgba(56,189,248,0.35);color:#38bdf8}
+.pc.purple .pi{background:rgba(139,92,246,0.08);border:1.5px solid rgba(139,92,246,0.4);color:#a78bfa}
+.pc.gold .pi{background:rgba(245,158,11,0.08);border:1.5px solid rgba(245,158,11,0.4);color:#fbbf24}
+.pi svg{width:30px;height:30px}
+.pn{text-align:center;font-family:'Orbitron',sans-serif;font-size:24px;font-weight:700;letter-spacing:6px;margin-bottom:16px;color:#fff}
+.pl{display:flex;justify-content:center;align-items:center;gap:12px;margin-bottom:8px}
+.op{font-family:'Inter',sans-serif;font-size:16px;font-weight:700;color:var(--dim);text-decoration:line-through}
+.deal{background:#dc2626;color:#fff;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.5px;padding:3px 9px;border-radius:5px}
+.pm{text-align:center;font-family:'Orbitron',sans-serif;font-size:52px;font-weight:900;letter-spacing:-1px;margin-bottom:30px;line-height:1;color:#fff}
+.pm .cur{font-size:30px;font-weight:700;vertical-align:top;line-height:1;display:inline-block;margin-right:2px}
+.feats{list-style:none;margin-bottom:26px;flex:1}
+.feats li{display:flex;align-items:flex-start;gap:12px;padding:8px 0;font-size:14px;color:#d8d8dd;line-height:1.45;font-weight:500}
+.feats li .ic{flex-shrink:0;width:18px;height:18px;display:flex;align-items:center;justify-content:center;margin-top:2px;color:#22c55e}
+.feats li .ic svg{width:15px;height:15px}
+.bb{width:100%;padding:15px;border-radius:12px;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:700;letter-spacing:2px;text-transform:uppercase;border:none;cursor:pointer;transition:all 0.25s;color:#fff}
+.pc.blue .bb{background:linear-gradient(135deg,#38bdf8,#0284c7);box-shadow:0 6px 24px rgba(56,189,248,0.3)}
+.pc.purple .bb{background:linear-gradient(135deg,#8b5cf6,#7c3aed);box-shadow:0 6px 24px rgba(139,92,246,0.35)}
+.pc.gold .bb{background:linear-gradient(135deg,#f59e0b,#d97706);box-shadow:0 6px 24px rgba(245,158,11,0.3);color:#000}
+.an{text-align:center;font-size:11px;color:var(--dim);margin-top:12px;letter-spacing:0.5px;font-weight:500}
+.flink{text-align:center;margin-top:36px;font-size:13px;color:var(--mut)}
+.flink a{color:#38bdf8;text-decoration:none;font-weight:700}
+</style>
+</head>
+<body>
+<div class="head">
+<div class="logo"><span class="lm">S</span><span>SHAPPNO LV UP</span></div>
+<a href="/login" style="color:#fff;text-decoration:none;font-size:13px;font-weight:700">Login →</a>
+</div>
+<div class="wrap">
+<div class="t">Choose Your Plan</div>
+<div class="sub">Works On All Servers</div>
+<div class="note">All plans work globally across every Free Fire server &mdash; IND, BD, EUROPE, SG, TH, PH, VN, MY, ID, HK, TW and more. Price shown in USD.</div>
+<div class="grid" id="grid"></div>
+<div class="flink">Already Have An Account? <a href="/login">Sign In</a></div>
+</div>
+<script>
+const SVG={
+check:'<svg viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="15" height="15"><polyline points="20 6 9 17 4 12"></polyline></svg>',
+bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+star:'<svg viewBox="0 0 24 24" fill="currentColor" stroke="currentColor" stroke-width="1.5" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><polygon points="12 2 15.09 8.26 22 9.27 17 14.14 18.18 21.02 12 17.77 5.82 21.02 7 14.14 2 9.27 8.91 8.26 12 2"></polygon></svg>',
+crown:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="30" height="30"><path d="M2 18h20l-1.5-9-4 3-4.5-7-4.5 7-4-3z"></path></svg>'
+};
+const PLANS=[
+{id:'starting',name:'STARTING',style:'blue',icon:'bolt',hours:24,slots:3,price:'1',old:'2',pop:false},
+{id:'basic',name:'BASIC',style:'purple',icon:'star',hours:48,slots:3,price:'2',old:'4',pop:true},
+{id:'premium',name:'PREMIUM',style:'gold',icon:'crown',hours:72,slots:4,price:'2.5',old:'6',pop:false}
+];
+const TG='shappno_04xx';
+
+function feat(p){
+const d=p.hours>=24?Math.round(p.hours/24)+' Day'+(p.hours>=48?'s':''):p.hours+' Hours';
+const sp=p.id==='premium'?'Fastest Leveling Speed Available':'Fast Leveling Performance';
+const off=p.id==='premium'?'Runs 24/7 &mdash; No Need To Stay Online':'Runs While You Are Offline';
+return[
+{ic:'check',txt:'Access To The Panel For '+d},
+{ic:'check',txt:sp},
+{ic:'check',txt:'Run Multiple Accounts At Once'},
+{ic:'check',txt:'Restart & Manage Accounts Anytime'},
+{ic:'check',txt:off},
+{ic:'check',txt:'Telegram Payment Support & Quick Help'},
+{ic:'check',txt:p.slots+' Concurrent Account'+(p.slots>1?'s':'')}
+];
+}
+
+function render(){
+const g=document.getElementById('grid');
+let h='';
+PLANS.forEach(p=>{
+let fh='';
+feat(p).forEach(f=>{
+fh+='<li><span class="ic">'+SVG.check+'</span><span>'+f.txt+'</span></li>';
+});
+h+='<div class="pc '+p.style+'">';
+if(p.pop)h+='<div class="ribbon">Most Popular</div>';
+h+='<div class="pi">'+SVG[p.icon]+'</div>';
+h+='<div class="pn">'+p.name+'</div>';
+h+='<div class="pl"><span class="op">$'+p.old+'</span><span class="deal">Deal</span></div>';
+h+='<div class="pm"><span class="cur">$</span>'+p.price+'</div>';
+h+='<ul class="feats">'+fh+'</ul>';
+h+='<button class="bb" onclick="buy(\''+p.id+'\')">Buy '+p.name+'</button>';
+h+='<div class="an">Instant Activation After Payment</div>';
+h+='</div>';
+});
+g.innerHTML=h;
+}
+
+function buy(id){
+const p=PLANS.find(x=>x.id===id);
+let m='Hi, I Want To Buy The '+p.name+' Plan.\n\nPlan: $'+p.price+'\nDuration: '+p.hours+' Hours\nSlots: '+p.slots+'\n\nPlease Send Payment Details.';
+window.open('https://t.me/'+TG+'?text='+encodeURIComponent(m),'_blank');
+}
+render();
+</script>
+</body>
+</html>

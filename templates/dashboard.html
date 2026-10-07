@@ -1,0 +1,648 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width,initial-scale=1.0,maximum-scale=1.0,user-scalable=no">
+<title>Dashboard - SHAPPNO LV UP</title>
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;500;600;700;800;900&family=Orbitron:wght@500;600;700;800;900&family=JetBrains+Mono:wght@400;500;600;700&display=swap" rel="stylesheet">
+<style>
+*{margin:0;padding:0;box-sizing:border-box}
+html,body{height:100%}
+body{font-family:'Inter',system-ui,sans-serif;background:#000;color:#fff;min-height:100vh;-webkit-font-smoothing:antialiased}
+:root{--bg:#000;--card:#08080c;--card2:#101015;--line:#1a1a22;--line2:#25252e;--txt:#fff;--mut:#8a8a95;--dim:#55555f;--green:#22c55e;--red:#ef4444;--blue:#3b82f6;--lightblue:#38bdf8;--purple:#8b5cf6;--gold:#f59e0b}
+.mono{font-family:'JetBrains Mono',monospace}
+.orb{font-family:'Orbitron',sans-serif}
+::-webkit-scrollbar{width:8px;height:8px}
+::-webkit-scrollbar-track{background:#0a0a0a}
+::-webkit-scrollbar-thumb{background:#262626;border-radius:4px}
+::-webkit-scrollbar-thumb:hover{background:#3a3a3a}
+body{background:radial-gradient(ellipse at top,#0a1020 0%,#000 55%);padding-bottom:80px;overflow-x:hidden}
+*{-webkit-tap-highlight-color:transparent}
+.top{position:sticky;top:0;z-index:50;background:rgba(0,0,0,0.9);backdrop-filter:blur(14px);border-bottom:1px solid var(--line)}
+.top-in{max-width:1200px;margin:0 auto;padding:12px 16px;display:flex;align-items:center;justify-content:space-between;gap:10px;flex-wrap:wrap}
+.logo{display:flex;align-items:center;gap:10px;font-family:'Orbitron',sans-serif;font-size:12px;font-weight:800;letter-spacing:2px;color:#fff}
+.logo img{
+  width:36px;height:36px;border-radius:50%;
+  object-fit:cover;
+  border:2px solid #38bdf8;
+  box-shadow:0 0 12px rgba(56,189,248,0.7), 0 0 24px rgba(56,189,248,0.4);
+  animation:dglow 2s ease-in-out infinite alternate;
+}
+@keyframes dglow{
+  0%{box-shadow:0 0 12px rgba(56,189,248,0.7),0 0 24px rgba(56,189,248,0.4)}
+  100%{box-shadow:0 0 20px rgba(56,189,248,1),0 0 40px rgba(56,189,248,0.7)}
+}
+.meta{display:flex;align-items:center;gap:8px;flex-wrap:wrap}
+.mi{display:flex;flex-direction:column;gap:1px;padding:3px 9px;border-left:2px solid #38bdf8}
+.mi .l{font-size:8px;color:var(--mut);letter-spacing:1.2px;text-transform:uppercase;font-weight:800;font-family:'Orbitron',sans-serif}
+.mi .v{font-family:'JetBrains Mono',monospace;font-size:11px;font-weight:700;white-space:nowrap}
+.act{display:flex;gap:5px}
+.bs{padding:8px 12px;font-family:'Orbitron',sans-serif;font-size:9px;font-weight:700;letter-spacing:1.2px;text-transform:uppercase;border-radius:8px;cursor:pointer;text-decoration:none;border:1px solid transparent;display:inline-flex;align-items:center;justify-content:center;gap:4px;transition:all 0.2s;white-space:nowrap}
+.bw{background:#38bdf8;color:#000}
+.bw:hover{opacity:0.88}
+.bg{background:transparent;border-color:var(--line2);color:var(--mut)}
+.bg:hover{border-color:var(--red);color:var(--red)}
+.main{max-width:1200px;margin:0 auto;padding:18px 14px 80px}
+.grid{display:grid;grid-template-columns:1fr;gap:14px}
+.cc{
+  position:relative;
+  background:linear-gradient(145deg,#0b1220 0%,#080c14 100%);
+  border:1px solid #1a2740;
+  border-radius:16px;
+  overflow:hidden;
+  transition:border-color 0.25s, box-shadow 0.25s;
+}
+.cc:hover{border-color:#1e3a5f;box-shadow:0 0 0 1px rgba(56,189,248,0.08), 0 8px 32px rgba(0,0,0,0.5)}
+.tagline{padding:14px 16px 10px;display:flex;align-items:center;gap:7px;flex-wrap:wrap}
+.pill{
+  display:inline-flex;align-items:center;gap:6px;
+  background:rgba(255,255,255,0.03);
+  border:1px solid rgba(255,255,255,0.08);
+  border-radius:20px;
+  padding:5px 12px;
+  font-family:'Orbitron',sans-serif;
+  font-size:9px;font-weight:700;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:#d0d5dd;
+}
+.pill.uid{font-family:'JetBrains Mono',monospace;letter-spacing:0.4px;font-size:10px}
+.pill svg{width:11px;height:11px;opacity:0.75}
+.pill.mode-br{background:rgba(56,189,248,0.1);border-color:rgba(56,189,248,0.4);color:#38bdf8}
+.pill.mode-lw{background:rgba(139,92,246,0.1);border-color:rgba(139,92,246,0.4);color:#a78bfa}
+.status-top{
+  display:inline-flex;align-items:center;gap:5px;
+  background:rgba(34,197,94,0.12);
+  border:1px solid rgba(34,197,94,0.5);
+  border-radius:20px;
+  padding:5px 12px;
+  font-family:'Orbitron',sans-serif;
+  font-size:9px;font-weight:800;
+  letter-spacing:1.2px;
+  text-transform:uppercase;
+  color:#22c55e;
+  white-space:nowrap;
+  margin-left:auto;
+}
+.status-top .dot{width:6px;height:6px;border-radius:50%;background:#22c55e;box-shadow:0 0 6px #22c55e;animation:pl 1.4s infinite}
+.status-top.paused{background:rgba(138,138,149,0.12);border-color:rgba(138,138,149,0.4);color:#8a8a95}
+.status-top.paused .dot{background:#8a8a95;box-shadow:none;animation:none}
+.status-top.match{background:rgba(245,158,11,0.12);border-color:rgba(245,158,11,0.5);color:#f59e0b}
+.status-top.match .dot{background:#f59e0b;box-shadow:0 0 6px #f59e0b}
+.status-top.online{background:rgba(56,189,248,0.12);border-color:rgba(56,189,248,0.5);color:#38bdf8}
+.status-top.online .dot{background:#38bdf8;box-shadow:0 0 6px #38bdf8}
+.acc-head{
+  display:flex;align-items:center;gap:12px;
+  padding:14px 16px;
+  background:linear-gradient(135deg,rgba(56,189,248,0.08),rgba(56,189,248,0.02));
+  border-top:1px solid rgba(56,189,248,0.1);
+  border-bottom:1px solid rgba(56,189,248,0.1);
+}
+.avatar{
+  width:48px;height:48px;border-radius:11px;
+  background:linear-gradient(135deg,#1e3a5f,#0f1e33);
+  border:1px solid rgba(56,189,248,0.3);
+  display:flex;align-items:center;justify-content:center;
+  font-family:'Orbitron',sans-serif;
+  font-weight:900;font-size:19px;color:#fff;
+  flex-shrink:0;
+  box-shadow:inset 0 0 16px rgba(56,189,248,0.1);
+}
+.hinfo{flex:1;min-width:0}
+.hinfo h3{
+  font-family:'Orbitron',sans-serif;
+  font-size:14px;font-weight:800;
+  letter-spacing:0.3px;
+  color:#fff;
+  margin-bottom:3px;
+  overflow:hidden;text-overflow:ellipsis;white-space:nowrap;
+}
+.hinfo p{
+  font-family:'JetBrains Mono',monospace;
+  font-size:10px;color:#7c869a;
+  letter-spacing:0.3px;
+  display:flex;align-items:center;gap:5px;
+}
+.uid-copy{
+  background:rgba(56,189,248,0.1);
+  border:1px solid rgba(56,189,248,0.3);
+  border-radius:5px;
+  padding:2px 5px;
+  cursor:pointer;
+  display:inline-flex;align-items:center;justify-content:center;
+  transition:all 0.2s;
+}
+.uid-copy:hover{background:rgba(56,189,248,0.2);border-color:#38bdf8}
+.uid-copy svg{width:10px;height:10px;stroke:#38bdf8}
+.lvl-badge{
+  background:rgba(56,189,248,0.12);
+  border:1px solid rgba(56,189,248,0.45);
+  border-radius:8px;
+  padding:6px 11px;
+  font-family:'Orbitron',sans-serif;
+  font-size:11px;font-weight:800;
+  letter-spacing:0.8px;
+  color:#38bdf8;
+  white-space:nowrap;
+  flex-shrink:0;
+}
+.cd{padding:12px 16px;border-bottom:1px solid rgba(255,255,255,0.05);display:grid;grid-template-columns:1fr 1fr;gap:8px 22px}
+@media(max-width:560px){.cd{grid-template-columns:1fr}}
+.row{display:flex;align-items:center;gap:7px;font-size:12px;min-width:0}
+.row .k{color:var(--mut);font-size:9px;font-weight:800;letter-spacing:1.3px;text-transform:uppercase;min-width:76px;font-family:'Orbitron',sans-serif}
+.row .v{color:#fff;font-weight:700;font-family:'JetBrains Mono',monospace;font-size:11px;overflow:hidden;text-overflow:ellipsis;white-space:nowrap}
+.timerow{padding:9px 16px;border-bottom:1px solid rgba(255,255,255,0.05);display:flex;align-items:center;gap:7px;font-size:10px;color:var(--mut);font-family:'JetBrains Mono',monospace}
+.td{width:4px;height:4px;border-radius:50%;background:#fff;opacity:0.5}
+.progress-box{
+  padding:14px 16px;
+  border-bottom:1px solid rgba(255,255,255,0.05);
+  background:rgba(0,0,0,0.2);
+}
+.progress-head{
+  display:flex;justify-content:space-between;align-items:center;
+  margin-bottom:10px;font-size:11px;font-weight:800;
+  font-family:'Orbitron',sans-serif;letter-spacing:1px;text-transform:uppercase;
+}
+.progress-head .l{color:#fff}
+.progress-head .r{color:#38bdf8;font-family:'JetBrains Mono',monospace;font-size:12px}
+.progress-track{
+  width:100%;height:14px;
+  background:#0a0a0a;
+  border-radius:8px;
+  overflow:hidden;
+  position:relative;
+  border:1px solid #1a2740;
+}
+.progress-fill{
+  height:100%;
+  background:linear-gradient(90deg,#38bdf8,#7dd3fc,#38bdf8);
+  border-radius:8px;
+  transition:width 0.6s ease;
+  box-shadow:0 0 12px rgba(56,189,248,0.6);
+  position:relative;
+  overflow:hidden;
+}
+.progress-fill::after{
+  content:'';
+  position:absolute;inset:0;
+  background:linear-gradient(90deg,transparent,rgba(255,255,255,0.4),transparent);
+  animation:shine 2s infinite;
+}
+@keyframes shine{0%{transform:translateX(-100%)}100%{transform:translateX(100%)}}
+.progress-nums{
+  display:flex;justify-content:space-between;
+  margin-top:7px;font-size:10px;
+  color:#7c869a;font-family:'JetBrains Mono',monospace;font-weight:600;
+}
+.progress-nums .need{color:#f59e0b}
+.statrow{display:grid;grid-template-columns:1fr 1fr 1fr;border-bottom:1px solid rgba(255,255,255,0.05);background:rgba(0,0,0,0.25)}
+.sc{padding:12px 6px;text-align:center;border-right:1px solid rgba(255,255,255,0.05)}
+.sc:last-child{border-right:none}
+.sc .l{font-size:8px;color:var(--mut);letter-spacing:1.3px;text-transform:uppercase;font-weight:800;margin-bottom:5px;font-family:'Orbitron',sans-serif}
+.sc .v{font-family:'JetBrains Mono',monospace;font-size:14px;font-weight:800;color:#fff;word-break:break-all}
+.sc .v.g{color:#22c55e}
+@media(max-width:400px){.sc .v{font-size:12px}}
+.acc-actions{
+  display:grid;
+  grid-template-columns:1fr 1fr 1fr 1fr;
+  gap:8px;
+  padding:12px 14px 14px;
+}
+.acc-actions button{
+  padding:11px 6px;
+  background:#1c1c1e;
+  border:1px solid #2a2a2e;
+  border-radius:10px;
+  color:#fff;
+  font-family:'Orbitron',sans-serif;
+  font-size:9px;
+  font-weight:800;
+  letter-spacing:0.8px;
+  text-transform:uppercase;
+  cursor:pointer;
+  transition:all 0.18s;
+  display:flex;
+  flex-direction:column;
+  align-items:center;
+  justify-content:center;
+  gap:4px;
+  min-width:0;
+}
+.acc-actions button:hover{background:#242428;border-color:#3a3a40}
+.acc-actions button svg{width:14px;height:14px;flex-shrink:0}
+.acc-actions button:disabled{opacity:0.5;cursor:not-allowed}
+.btn-pause{color:#f59e0b}
+.btn-pause:hover{border-color:#f59e0b!important;background:rgba(245,158,11,0.08)!important}
+.btn-pause svg{stroke:#f59e0b}
+.btn-restart{color:#38bdf8}
+.btn-restart:hover{border-color:#38bdf8!important;background:rgba(56,189,248,0.08)!important}
+.btn-restart svg{stroke:#38bdf8}
+.btn-refresh{color:#22c55e}
+.btn-refresh:hover{border-color:#22c55e!important;background:rgba(34,197,94,0.08)!important}
+.btn-refresh svg{stroke:#22c55e}
+.btn-delete{color:#ef4444;border-color:rgba(239,68,68,0.4)!important;background:rgba(239,68,68,0.05)!important}
+.btn-delete:hover{border-color:#ef4444!important;background:rgba(239,68,68,0.12)!important}
+.btn-delete svg{stroke:#ef4444}
+@media(max-width:400px){
+  .acc-actions{gap:5px;padding:10px 10px 12px}
+  .acc-actions button{padding:9px 3px;font-size:8px;gap:3px}
+  .acc-actions button svg{width:12px;height:12px}
+}
+.empty{text-align:center;padding:60px 20px;color:var(--mut)}
+.empty .big{display:flex;justify-content:center;margin-bottom:12px;opacity:0.25}
+.empty .big svg{width:44px;height:44px}
+.conf{position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:200;padding:18px}
+.conf.on{display:flex}
+.conf-box{background:#141414;border:1px solid #262626;border-radius:16px;padding:22px;max-width:400px;width:100%;font-family:'Inter',sans-serif}
+.conf-head{font-size:16px;font-weight:700;color:#fff;margin-bottom:14px;text-align:center}
+.conf-msg{font-size:13px;line-height:1.65;color:#a8a8a8;text-align:center;margin-bottom:22px}
+.conf-msg b{color:#38bdf8;font-weight:800}
+.conf-btns{display:flex;gap:10px}
+.conf-btns button{flex:1;padding:13px 10px;border-radius:10px;font-family:'Inter',sans-serif;font-size:13px;font-weight:700;cursor:pointer;border:none;transition:all 0.2s}
+.conf-yes{background:#38bdf8;color:#000}
+.conf-yes:hover{background:#7dd3fc}
+.conf-no{background:#1c1c1e;color:#fff;border:1px solid #2a2a2e!important}
+.conf-no:hover{background:#242428}
+.mtop{position:fixed;inset:0;background:rgba(0,0,0,0.88);backdrop-filter:blur(8px);display:none;align-items:center;justify-content:center;z-index:300;padding:18px}
+.mtop.on{display:flex}
+.mbox{background:#141414;border:1px solid #262626;border-radius:18px;padding:22px;max-width:440px;width:100%;position:relative;font-family:'Inter',sans-serif}
+.mh-row{display:flex;justify-content:space-between;align-items:flex-start;margin-bottom:22px}
+.mh-row h3{font-size:17px;font-weight:700;color:#fff;letter-spacing:0.2px}
+.mclose{width:34px;height:34px;border-radius:50%;border:1px solid #2a2a2a;background:transparent;color:#fff;cursor:pointer;display:flex;align-items:center;justify-content:center;flex-shrink:0}
+.mclose:hover{background:#1e1e1e}
+.mclose svg{width:16px;height:16px;stroke:#fff;fill:none;stroke-width:2}
+.micon{width:56px;height:56px;margin:0 auto 16px;display:flex;align-items:center;justify-content:center}
+.micon svg{width:56px;height:56px;stroke:#fff;fill:none;stroke-width:1.5}
+.mtitle{text-align:center;font-size:19px;font-weight:800;color:#fff;margin-bottom:12px;letter-spacing:0.3px}
+.mtext{text-align:center;font-size:13px;line-height:1.65;color:#a8a8a8;margin-bottom:20px}
+.mbtn{width:100%;padding:14px;border-radius:10px;background:#fff;color:#000;border:none;font-family:'Inter',sans-serif;font-size:14px;font-weight:700;cursor:pointer;display:flex;align-items:center;justify-content:center;gap:8px;text-decoration:none}
+.mbtn:hover{background:#e5e5e5}
+</style>
+</head>
+
+
+<body>
+
+<div class="top">
+<div class="top-in">
+<div class="logo">
+<img src="https://files.catbox.moe/1o431f.jpg" alt="Logo">
+<span>SHAPPNO LV UP</span>
+</div>
+<div class="meta">
+<div class="mi"><span class="l">User</span><span class="v" id="ui-u">{{USERNAME}}</span></div>
+<div class="mi"><span class="l">Time</span><span class="v" id="ui-t">--</span></div>
+<div class="mi"><span class="l">Slots</span><span class="v" id="ui-s">0/0</span></div>
+</div>
+<div class="act">
+<a class="bs bw" href="/add-new-job">+ Add New Job</a>
+<a class="bs bg" href="/logout">Logout</a>
+</div>
+</div>
+</div>
+
+<div class="main">
+<div class="grid" id="grid"></div>
+</div>
+
+<div class="conf" id="cm">
+<div class="conf-box">
+<div class="conf-head" id="cm-t">Confirm</div>
+<div class="conf-msg" id="cm-m">Are You Sure?</div>
+<div class="conf-btns">
+<button class="conf-yes" id="cm-y">Yes</button>
+<button class="conf-no" id="cm-n">No</button>
+</div>
+</div>
+</div>
+
+<div class="mtop" id="maint">
+<div class="mbox">
+<div class="mh-row">
+<h3>Important Update</h3>
+<button class="mclose" onclick="document.getElementById('maint').classList.remove('on')"><svg viewBox="0 0 24 24"><line x1="18" y1="6" x2="6" y2="18"/><line x1="6" y1="6" x2="18" y2="18"/></svg></button>
+</div>
+<div class="micon"><svg viewBox="0 0 24 24"><circle cx="12" cy="12" r="10"/><polyline points="8 12 11 15 16 9"/></svg></div>
+<div class="mtitle" id="notif-title">Important Update</div>
+<div class="mtext" id="notif-text">Loading...</div>
+<a class="mbtn" href="https://t.me/shappno_04xx" target="_blank">Chat Now</a>
+</div>
+</div>
+
+<script>
+const SVG={
+pause:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><rect x="6" y="4" width="4" height="16" rx="1"></rect><rect x="14" y="4" width="4" height="16" rx="1"></rect></svg>',
+play:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polygon points="6 4 20 12 6 20 6 4"></polygon></svg>',
+trash:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="3 6 5 6 21 6"></polyline><path d="M19 6l-1 14a2 2 0 0 1-2 2H8a2 2 0 0 1-2-2L5 6"></path><path d="M10 11v6M14 11v6"></path><path d="M9 6V4a2 2 0 0 1 2-2h2a2 2 0 0 1 2 2v2"></path></svg>',
+refresh:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><polyline points="23 4 23 10 17 10"></polyline><polyline points="1 20 1 14 7 14"></polyline><path d="M3.51 9a9 9 0 0 1 14.85-3.36L23 10M1 14l4.64 4.36A9 9 0 0 0 20.49 15"></path></svg>',
+restart:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="14" height="14"><path d="M3 12a9 9 0 0 1 9-9 9.75 9.75 0 0 1 6.74 2.74L21 8"/><path d="M21 3v5h-5"/><path d="M21 12a9 9 0 0 1-9 9 9.75 9.75 0 0 1-6.74-2.74L3 16"/><path d="M3 21v-5h5"/></svg>',
+globe:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><circle cx="12" cy="12" r="10"></circle><line x1="2" y1="12" x2="22" y2="12"></line><path d="M12 2a15.3 15.3 0 0 1 4 10 15.3 15.3 0 0 1-4 10 15.3 15.3 0 0 1-4-10 15.3 15.3 0 0 1 4-10z"></path></svg>',
+id:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><rect x="3" y="5" width="18" height="14" rx="2"></rect><circle cx="9" cy="11" r="2"></circle><path d="M15 10h3M15 14h3"></path></svg>',
+warn:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.4" stroke-linecap="round" stroke-linejoin="round" width="44" height="44"><path d="M10.29 3.86 1.82 18a2 2 0 0 0 1.71 3h16.94a2 2 0 0 0 1.71-3L13.71 3.86a2 2 0 0 0-3.42 0z"></path><line x1="12" y1="9" x2="12" y2="13"></line><line x1="12" y1="17" x2="12.01" y2="17"></line></svg>',
+bolt:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="11" height="11"><polygon points="13 2 3 14 12 14 11 22 21 10 12 10 13 2"></polygon></svg>',
+copy:'<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round" width="10" height="10"><rect x="9" y="9" width="13" height="13" rx="2" ry="2"></rect><path d="M5 15H4a2 2 0 0 1-2-2V4a2 2 0 0 1 2-2h9a2 2 0 0 1 2 2v1"></path></svg>',
+crown:'<svg viewBox="0 0 24 24" fill="none" stroke="#f59e0b" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round" width="16" height="16"><path d="M2 18h20l-1.5-9-4 3-4.5-7-4.5 7-4-3z"></path></svg>'
+};
+
+const LEVELS = {
+    1: 0, 2: 48, 3: 202, 4: 544, 5: 1012, 6: 1844, 7: 2792, 8: 3800,
+    9: 4870, 10: 6004, 11: 7192, 12: 8448, 13: 9776, 14: 11140, 15: 12566,
+    16: 14060, 17: 15610, 18: 17224, 19: 18902, 20: 20632, 21: 22424,
+    22: 24728, 23: 26192, 24: 28166, 25: 30200, 26: 32294, 27: 34448,
+    28: 37804, 29: 41174, 30: 44870, 31: 48852, 32: 53334, 33: 58566,
+    34: 64096, 35: 69994, 36: 76460, 37: 83108, 38: 91128, 39: 99322,
+    40: 108092, 41: 120144, 42: 133266, 43: 147472, 44: 162760, 45: 179126,
+    46: 196572, 47: 215368, 48: 235516, 49: 257010, 50: 279860, 51: 304056,
+    52: 348318, 53: 394982, 54: 444044, 55: 495508, 56: 549364, 57: 633756,
+    58: 721744, 59: 813336, 60: 908522, 61: 1041438, 62: 1180352, 63: 1325256,
+    64: 1476184, 65: 1634300, 66: 1840946, 67: 2056594, 68: 2281242, 69: 2514880,
+    70: 2757530, 71: 3059506, 72: 3372284, 73: 3699456, 74: 4041030, 75: 4397020,
+    76: 4829104, 77: 5282204, 78: 5756304, 79: 6251404, 80: 6767504, 81: 7381324,
+    82: 8043154, 83: 8752952, 84: 9510808, 85: 10316638, 86: 11277190, 87: 12360748,
+    88: 13360304, 89: 14482858, 90: 15659418, 91: 17026708, 92: 18453688, 93: 19941280,
+    94: 21488570, 95: 23095858, 96: 24763138, 97: 26490138, 98: 28277708, 99: 30124996,
+    100: 32032284,
+};
+
+function showConfirm(title,msg,yesText,noText){
+return new Promise(resolve=>{
+document.getElementById('cm-t').textContent=title;
+document.getElementById('cm-m').innerHTML=msg;
+document.getElementById('cm-y').textContent=yesText||'Yes';
+document.getElementById('cm-n').textContent=noText||'No';
+document.getElementById('cm-n').style.display='';
+document.getElementById('cm').classList.add('on');
+const clean=()=>{
+document.getElementById('cm').classList.remove('on');
+document.getElementById('cm-y').onclick=null;
+document.getElementById('cm-n').onclick=null;
+};
+document.getElementById('cm-y').onclick=()=>{clean();resolve(true)};
+document.getElementById('cm-n').onclick=()=>{clean();resolve(false)};
+});
+}
+
+async function delAcc(uid){
+const ok=await showConfirm('Delete Account','Please Confirm That You Are Deleting Your Account.','Yes, Delete','No, Cancel');
+if(!ok)return;
+try{
+  const r = await fetch('/api/account/delete',{
+    method:'POST',
+    headers:{'Content-Type':'application/json'},
+    body:JSON.stringify({uid, keep_in_file:false})
+  });
+  const d = await r.json();
+  setTimeout(()=>{ fetchS(); }, 800);
+  setTimeout(()=>{ fetchS(); }, 2000);
+}catch(e){
+  try{ await fetchS(); }catch(_){}
+}
+}
+
+async function pauseAcc(uid){
+try{await fetch('/api/account/pause',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});fetchS()}catch(e){}
+}
+async function resumeAcc(uid){
+try{await fetch('/api/account/resume',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});fetchS()}catch(e){}
+}
+
+const restartCooldowns = {};
+async function restartAcc(uid,btn){
+const now = Date.now();
+const cd = restartCooldowns[uid] || 0;
+if(now < cd) return;
+restartCooldowns[uid] = now + 120000;
+if(btn){
+  btn.disabled = true;
+  let remain = 120;
+  const orig = btn.innerHTML;
+  const tick = setInterval(()=>{
+    remain--;
+    if(remain <= 0){
+      clearInterval(tick);
+      btn.disabled = false;
+      btn.innerHTML = orig;
+      restartCooldowns[uid] = 0;
+      return;
+    }
+    const m = Math.floor(remain/60);
+    const s = remain % 60;
+    btn.innerHTML = SVG.restart + ' ' + m + ':' + String(s).padStart(2,'0');
+  },1000);
+}
+try{
+  await fetch('/api/account/delete',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid, keep_in_file:true})});
+  await new Promise(r=>setTimeout(r,1500));
+  await fetch('/api/account/restart',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});
+  await fetchS();
+}catch(e){}
+}
+
+const refreshCooldowns = {};
+async function refreshAcc(uid,btn){
+const now = Date.now();
+const cd = refreshCooldowns[uid] || 0;
+if(now < cd) return;
+refreshCooldowns[uid] = now + 3000;
+if(btn){
+  btn.disabled = true;
+  const orig = btn.innerHTML;
+  btn.innerHTML = SVG.refresh + ' ...';
+  setTimeout(()=>{
+    btn.disabled = false;
+    btn.innerHTML = orig;
+    refreshCooldowns[uid] = 0;
+  }, 2500);
+}
+try{
+  await fetch('/api/account/resume',{method:'POST',headers:{'Content-Type':'application/json'},body:JSON.stringify({uid})});
+  await fetchS();
+}catch(e){
+  try{ await fetchS(); }catch(_){}
+}
+}
+
+function esc(s){if(s==null)return'';return String(s).replace(/&/g,'&amp;').replace(/</g,'&lt;').replace(/>/g,'&gt;').replace(/"/g,'&quot;').replace(/'/g,'&#39;')}
+function ago(ts){
+if(!ts)return'--';
+const s=Math.floor(Date.now()/1000-ts);
+if(s<5)return'Just Now';
+if(s<60)return s+'s Ago';
+if(s<3600)return Math.floor(s/60)+'m Ago';
+if(s<86400)return Math.floor(s/3600)+'h Ago';
+return Math.floor(s/86400)+'d Ago'
+}
+
+function fmtLeft(s){
+if(s<=0)return'Expired';
+const d=Math.floor(s/86400);
+const h=Math.floor((s%86400)/3600);
+const m=Math.floor((s%3600)/60);
+if(d>0)return d+'d '+h+'h '+m+'m';
+if(h>0)return h+'h '+m+'m';
+return m+'m';
+}
+
+let liveSecondsLeft = 0;
+setInterval(()=>{
+if(liveSecondsLeft > 0){
+  liveSecondsLeft--;
+  document.getElementById('ui-t').textContent = fmtLeft(liveSecondsLeft);
+}
+},1000);
+
+function copyUID(uid,el){
+  const doCopy = (text) => {
+    if(navigator.clipboard && window.isSecureContext){
+      return navigator.clipboard.writeText(text);
+    } else {
+      const ta = document.createElement('textarea');
+      ta.value = text;
+      ta.style.position = 'fixed';
+      ta.style.left = '-9999px';
+      document.body.appendChild(ta);
+      ta.select();
+      try{document.execCommand('copy')}catch(e){}
+      document.body.removeChild(ta);
+      return Promise.resolve();
+    }
+  };
+  doCopy(uid).then(()=>{
+    const orig = el.innerHTML;
+    el.innerHTML = '<svg width="10" height="10" viewBox="0 0 24 24" fill="none" stroke="#22c55e" stroke-width="2.5" stroke-linecap="round" stroke-linejoin="round"><polyline points="20 6 9 17 4 12"></polyline></svg>';
+    setTimeout(()=>{el.innerHTML = orig}, 1000);
+  }).catch(()=>{});
+}
+
+
+function render(data){
+const g=document.getElementById('grid');
+const a=data.accounts||[];
+const slots=data.slots||0;
+if(data.expired){window.location.href='/expired';return}
+
+let h='';
+
+a.forEach(acc=>{
+const gained=acc.gained_exp||0;
+const isPaused=acc.status==='PAUSED';
+const isMatch=acc.status==='IN_MATCH';
+const nickname=esc(acc.nickname||'Player');
+const initial=nickname.charAt(0).toUpperCase()||'P';
+const uid=esc(acc.uid);
+const region=esc(acc.region||'IND');
+const mode=(acc.mode||'LW').toUpperCase();
+const modeCls=mode==='BR'?'pill mode-br':'pill mode-lw';
+const modeLabel=mode==='BR'?'BATTLE ROYALE':'LONE WOLF';
+const currentExp = acc.current_exp || 0;
+const level = acc.level || 1;
+const nextLevel = level + 1;
+const baseExp = LEVELS[level] || 0;
+const nextExp = LEVELS[nextLevel] || (baseExp + 10000);
+const needExp = nextExp - baseExp;
+const haveExp = currentExp - baseExp;
+const pct = Math.min(100, Math.max(0, (haveExp / needExp) * 100));
+const remainExp = Math.max(0, nextExp - currentExp);
+
+let statusLabel, statusCls;
+if(isPaused){statusLabel='PAUSED';statusCls='status-top paused'}
+else if(isMatch){statusLabel='IN MATCH';statusCls='status-top match'}
+else if(acc.status==='ONLINE'){statusLabel='ONLINE';statusCls='status-top online'}
+else {statusLabel='LIVE';statusCls='status-top'}
+
+h+='<div class="cc">';
+
+h+='<div class="tagline">';
+h+='<span class="'+modeCls+'">'+SVG.bolt+' '+modeLabel+'</span>';
+h+='<span class="'+statusCls+'"><span class="dot"></span>'+statusLabel+'</span>';
+h+='</div>';
+
+h+='<div class="acc-head">';
+h+='<div class="avatar">'+initial+'</div>';
+h+='<div class="hinfo"><h3>'+nickname+'</h3><p>UID: '+uid+' <span class="uid-copy" onclick="copyUID(\''+uid+'\',this)" title="Copy UID">'+SVG.copy+'</span></p></div>';
+h+='<div class="lvl-badge">Lv.'+level+'</div>';
+h+='</div>';
+
+h+='<div class="cd">';
+h+='<div class="row"><span class="k">Created</span><span class="v">'+ago(acc.created_at)+'</span></div>';
+h+='<div class="row"><span class="k">Nickname</span><span class="v">'+nickname+'</span></div>';
+h+='<div class="row"><span class="k">Region</span><span class="v">'+region+'</span></div>';
+h+='<div class="row"><span class="k">Updated</span><span class="v">'+ago(acc.last_update)+'</span></div>';
+h+='</div>';
+
+h+='<div class="progress-box">';
+h+='<div class="progress-head">';
+h+='<span class="l">Level '+level+' &rarr; L'+(level+1)+'</span>';
+h+='<span class="r">'+pct.toFixed(1)+'%</span>';
+h+='</div>';
+h+='<div class="progress-track"><div class="progress-fill" style="width:'+pct+'%"></div></div>';
+h+='<div class="progress-nums">';
+h+='<span>'+haveExp+' / '+needExp+' EXP</span>';
+h+='<span class="need">'+remainExp+' EXP needed</span>';
+h+='</div>';
+h+='</div>';
+
+h+='<div class="statrow">';
+h+='<div class="sc"><div class="l">EXP</div><div class="v">'+(acc.current_exp||0).toLocaleString()+'</div></div>';
+h+='<div class="sc"><div class="l">Initial</div><div class="v">'+(acc.initial_exp||0).toLocaleString()+'</div></div>';
+h+='<div class="sc"><div class="l">Gained</div><div class="v g">+'+gained.toLocaleString()+'</div></div>';
+h+='</div>';
+
+h+='<div class="acc-actions">';
+if(isPaused){
+  h+='<button class="btn-pause" onclick="resumeAcc(\''+uid+'\')">'+SVG.play+' ON</button>';
+} else {
+  h+='<button class="btn-pause" onclick="pauseAcc(\''+uid+'\')">'+SVG.pause+' PAUSE</button>';
+}
+h+='<button class="btn-restart" onclick="restartAcc(\''+uid+'\',this)">'+SVG.restart+' RESTART</button>';
+h+='<button class="btn-refresh" onclick="refreshAcc(\''+uid+'\',this)">'+SVG.refresh+' REFRESH</button>';
+h+='<button class="btn-delete" onclick="delAcc(\''+uid+'\')">'+SVG.trash+' DELETE</button>';
+h+='</div>';
+
+h+='</div>';
+});
+
+if(a.length===0){
+h='<div class="empty"><div class="big">'+SVG.warn+'</div><p>No Accounts Yet. Click <b>+ Add New Job</b> To Start.</p></div>'
+}
+
+g.innerHTML=h;
+document.getElementById('ui-u').textContent=data.username||'{{USERNAME}}';
+liveSecondsLeft = data.seconds_left || 0;
+document.getElementById('ui-t').textContent=fmtLeft(liveSecondsLeft);
+document.getElementById('ui-s').textContent=a.length+'/'+slots
+}
+
+async function fetchS(){
+try{
+const r=await fetch('/api/stats');
+if(r.status===401){window.location.href='/login';return}
+const d=await r.json();
+render(d)
+}catch(e){}
+}
+
+async function loadNotif(){
+  try{
+    const r = await fetch('/api/notification');
+    const d = await r.json();
+    if(d.status==='ok' && d.text){
+      document.getElementById('notif-text').textContent = d.text;
+      document.getElementById('notif-title').textContent = 'Important Update';
+    }
+  }catch(e){}
+}
+
+document.getElementById('maint').classList.add('on');
+document.getElementById('maint').addEventListener('click',e=>{
+if(e.target.id==='maint')document.getElementById('maint').classList.remove('on');
+});
+
+loadNotif();
+fetchS();
+setInterval(fetchS, 240000);
+</script>
+</body>
+</html>
